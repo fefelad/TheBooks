@@ -1,0 +1,21 @@
+@use "./_variables.module" as var;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin main-text {
+  font-family: $font-family-poppins;
+  font-size: 22px;
+  font-weight: 400;
+  color: $text-color-black;
+}
+
+@mixin title-text {
+  font-family: $font-family-poppins;
+  font-size: 32px;
+  font-weight: 600;
+  color: $text-color-black;
+}

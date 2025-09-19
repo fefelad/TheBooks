@@ -1,0 +1,5 @@
+@use "./shared/styles/_variables.module" as var;
+
+body {
+  background-color: var.$Bg-main-color;
+}
