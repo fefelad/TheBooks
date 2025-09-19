@@ -22,13 +22,13 @@
 https://github.com/fefelad/TheBooks
 
 2. Установите зависимости для клиента и сервера:
-Для фронта
-cd client
-npm install
+  Для фронта
+  cd client
+  npm install
 
-Для бека
-cd ../server
-npm install
+  Для бека
+  cd ../server
+  npm install
 
 
 3. Запустите сервер:
