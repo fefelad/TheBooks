@@ -1,0 +1,25 @@
+.wrapper_loyout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.3em 1.3em;
+  height: 100vh;
+  grid-template-areas:
+    "left-side main-side main-side main-side right-side"
+    "left-side main-side main-side main-side right-side"
+    "left-side main-side main-side main-side right-side"
+    "left-side main-side main-side main-side right-side"
+    "left-side main-side main-side main-side right-side";
+
+  .aside_wrapper__left {
+    grid-area: left-side;
+  }
+
+  .wrapper_main__side {
+    grid-area: main-side;
+  }
+
+  .aside_wrapper__right {
+    grid-area: right-side;
+  }
+}

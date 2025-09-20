@@ -1,0 +1,41 @@
+@use "../../shared/styles/variables.module" as var;
+@use "../../shared/styles/mixins.module" as mix;
+
+.navigation {
+  margin-top: 1em;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    .favorite {
+      margin-bottom: 3em;
+    }
+
+    .log_out {
+      margin-bottom: 0em;
+    }
+
+    li {
+      @include mix.flex-center;
+      gap: 1em;
+
+      a {
+        @include mix.main-text;
+        &:hover {
+          color: var.$Text-color-active-menu;
+          transform: 0.3s;
+        }
+      }
+    }
+  }
+
+  .border_hr {
+    border: 1px solid var.$Bg-color-beige;
+  }
+
+  .accoutn_link {
+    margin-top: 3em;
+  }
+}

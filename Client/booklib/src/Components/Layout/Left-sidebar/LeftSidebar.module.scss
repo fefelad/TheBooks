@@ -1,0 +1,17 @@
+@use "../../../shared/styles/variables.module" as var;
+@use "../../../shared/styles/mixins.module" as mix;
+
+.aside_wrapper__left {
+  background-color: var.$Bg-color-white;
+  padding: 2em;
+  border-top-left-radius: 2em;
+
+  .aside_title__header {
+    @include mix.title-text;
+    margin-bottom: 1em;
+  }
+
+  .aside_text__menu {
+    @include mix.main-text;
+  }
+}
