@@ -1,0 +1,13 @@
+@use "../../../shared/styles/variables.module" as var;
+@use "../../../shared/styles/mixins.module" as mix;
+
+.wrapper_hero {
+  padding: 2em;
+  background-color: var.$Bg-color-beige;
+  @include mix.border;
+  height: 95vh;
+
+  .title {
+    @include mix.title-text;
+  }
+}

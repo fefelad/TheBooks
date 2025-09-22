@@ -2,7 +2,7 @@ import styles from "./Navigation.module.scss";
 import { MdHome } from "react-icons/md";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { IoIosBookmarks } from "react-icons/io";
-import { FaFileDownload } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 
 import { IoMdSettings } from "react-icons/io";
@@ -31,8 +31,8 @@ function Navigation() {
         </li>
 
         <li>
-          <FaFileDownload size={25} />
-          <a href="">Dowloading</a>
+          <FaShoppingCart size={25} />
+          <a href="">Your cart</a>
         </li>
 
         <li className={styles.favorite}>

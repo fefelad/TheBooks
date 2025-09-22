@@ -4,7 +4,7 @@
 .aside_wrapper__left {
   background-color: var.$Bg-color-white;
   padding: 2em;
-  border-top-left-radius: 2em;
+  @include mix.border;
 
   .aside_title__header {
     @include mix.title-text;
