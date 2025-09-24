@@ -77,13 +77,129 @@ class UserController {
 
   async getUserId(req, res) {
     const { id } = req.params;
-    // const userId = req.user.id;
-
     try {
       const user = await prisma.user.findUnique({
         where: { id: Number(id) },
         include: {
-          reviews: true,
+          reviews: {
+            include: {
+              book: {
+                include: {
+                  author: true,
+                  categories: true,
+                },
+              },
+            },
+          },
+          favorites: {
+            include: {
+              book: {
+                include: {
+                  author: true,
+                  categories: true,
+                  _count: {
+                    select: { reviews: true, favorites: true },
+                  },
+                },
+              },
+            },
+            orderBy: { createdAt: "desc" },
+          },
+        },
+      });
+
+      if (!user) {
+        return res.status(404).json({ message: "Пользователь не найден" });
+      }
+
+      const response = {
+        id: user.id,
+        username: user.username,
+        avatarUrl: user.avatarUrl,
+        createdAt: user.createdAt,
+        reviews: user.reviews,
+        favoriteBooks: user.favorites.map((fav) => fav.book), // извлекаем книги из favorites
+      };
+
+      res.json(response);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
+  }
+
+  async updateUser(req, res) {
+    const { id } = req.params;
+    const { name, email } = req.body;
+
+    let filePath;
+
+    if (req.file && req.file.path) {
+      filePath = req.file.path;
+    }
+
+    if (id != req.user.id) {
+      return res.status(403).json({ message: "Нет доступа" });
+    }
+
+    try {
+      if (email) {
+        const existingUser = await prisma.user.findFirst({
+          where: { email: email },
+        });
+
+        if (existingUser && existingUser.id != id) {
+          return res
+            .status(400)
+            .json({ message: "Пользователь с таким email уже существует" });
+        }
+      }
+
+      const updatedData = await prisma.user.update({
+        where: { id: Number(id) },
+        data: {
+          username: name,
+          email: email,
+          avatarUrl: filePath ? `/static/${filePath}` : undefined,
+        },
+      });
+
+      res.json(updatedData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
+  }
+
+  async currentUser(req, res) {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: req.user.id },
+        include: {
+          reviews: {
+            include: {
+              book: {
+                include: {
+                  author: true,
+                  categories: true,
+                },
+              },
+            },
+          },
+          favorites: {
+            include: {
+              book: {
+                include: {
+                  author: true,
+                  categories: true,
+                  _count: {
+                    select: { reviews: true, favorites: true },
+                  },
+                },
+              },
+            },
+            orderBy: { createdAt: "desc" },
+          },
         },
       });
 
@@ -92,20 +208,10 @@ class UserController {
       }
 
       res.json(user);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       res.status(500).json({ message: "Ошибка сервера" });
     }
-
-    res.json();
-  }
-
-  async currentUser(req, res) {
-    res.send("Current User");
-  }
-
-  async updateUser(req, res) {
-    res.send("Update User");
   }
 }
 
