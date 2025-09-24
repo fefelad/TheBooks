@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-
+require("dotenv").config();
 const bcrypt = require("bcrypt");
 const Jdenticon = require("jdenticon");
 const jwt = require("jsonwebtoken");
@@ -46,14 +46,64 @@ class UserController {
   }
 
   async LoginUser(req, res) {
-    res.send("Login User");
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Все поля обязательны" });
+    }
+
+    try {
+      const user = await prisma.user.findUnique({
+        where: { email: email },
+      });
+
+      if (!user) {
+        return res.status(400).json({ message: "Пользователь не найден" });
+      }
+
+      const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
+      if (!isPasswordValid) {
+        return res.status(400).json({ message: "Неверный пароль" });
+      }
+
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
+
+      res.json({ token });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
   }
+
+  async getUserId(req, res) {
+    const { id } = req.params;
+    // const userId = req.user.id;
+
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: Number(id) },
+        include: {
+          reviews: true,
+        },
+      });
+
+      if (!user) {
+        return res.status(404).json({ message: "Пользователь не найден" });
+      }
+
+      res.json(user);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Ошибка сервера" });
+    }
+
+    res.json();
+  }
+
   async currentUser(req, res) {
     res.send("Current User");
   }
-  async getUserId(req, res) {
-    res.send("Get User by ID");
-  }
+
   async updateUser(req, res) {
     res.send("Update User");
   }
