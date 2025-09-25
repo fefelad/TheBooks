@@ -1,14 +1,16 @@
-import Hero from "../Components/Layout/Hero/Hero";
-import Layout from "../Components/Layout/Layout";
+// import Hero from "../Components/Layout/Hero/Hero";
+// import Layout from "../Components/Layout/Layout";
+import AuthLoyout from "../features/Auth/AuthLoyout/AuthLoyout";
 import styles from "./App.module.scss";
 
 function App() {
   return (
     <>
       <div className={styles.wrapper_app}>
-        <Layout>
+        {/* <Layout>
           <Hero />
-        </Layout>
+        </Layout> */}
+        <AuthLoyout />
       </div>
     </>
   );

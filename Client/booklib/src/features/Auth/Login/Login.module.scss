@@ -1,0 +1,12 @@
+@use "../../../shared/styles/mixins.module" as mix;
+
+.wrapper_form {
+  @include mix.flex-col;
+  width: 300px;
+  height: 400px;
+  padding: 2rem;
+
+  .form__text {
+    @include mix.main-text;
+  }
+}

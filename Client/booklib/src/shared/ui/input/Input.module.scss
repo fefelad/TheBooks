@@ -1,0 +1,118 @@
+.input {
+  // Базовые стили
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #2d3748;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  outline: none;
+
+  // Плейсхолдер
+  &::placeholder {
+    color: #a0aec0;
+    opacity: 1;
+  }
+
+  // Состояние фокуса
+  &:focus {
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  }
+
+  // Состояние ховера
+  &:hover {
+    border-color: #cbd5e0;
+  }
+
+  // Отключенное состояние
+  &:disabled {
+    background-color: #f7fafc;
+    border-color: #e2e8f0;
+    color: #a0aec0;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // Ошибочное состояние
+  &.error {
+    border-color: #f56565;
+
+    &:focus {
+      border-color: #f56565;
+      box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.15);
+    }
+  }
+
+  // Успешное состояние
+  &.success {
+    border-color: #48bb78;
+
+    &:focus {
+      border-color: #48bb78;
+      box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.15);
+    }
+  }
+
+  // Размеры
+  &.small {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  &.large {
+    padding: 16px 20px;
+    font-size: 18px;
+  }
+
+  // Варианты
+  &.outlined {
+    background-color: transparent;
+    border-width: 1px;
+  }
+
+  &.filled {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+
+    &:focus {
+      background-color: #ffffff;
+    }
+  }
+}
+
+// Группа инпутов (если нужно)
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .input {
+    margin-bottom: 0;
+  }
+}
+
+// Лейбл для инпута (опционально)
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 14px;
+
+  &.required::after {
+    content: " *";
+    color: #f56565;
+  }
+}
+
+// Текст ошибки (опционально)
+.input-error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #f56565;
+}

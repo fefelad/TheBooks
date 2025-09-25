@@ -1,5 +1,12 @@
 @use "./_variables.module.scss" as var;
 
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;
