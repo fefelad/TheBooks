@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
 @mixin flex-center {
@@ -24,6 +23,20 @@
   font-size: 32px;
   font-weight: 600;
   color: var.$Text-color-black;
+}
+
+@mixin btn_text {
+  font-family: var.$font-family-poppins;
+  font-size: 16px;
+  font-weight: 400;
+  color: var.$Btn-color-text;
+}
+
+@mixin error-text {
+  font-family: var.$font-family-poppins;
+  font-size: 14px;
+  font-weight: 400;
+  color: var.$Text-color-error;
 }
 
 @mixin border {

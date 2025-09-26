@@ -12,9 +12,9 @@ function AuthLoyout() {
 
   return (
     <div className={styles.wrapper_loyout}>
-      <div className={styles.wrapper_header}>
+      <div className={styles.wrapper_loyout__header}>
         <h1 className={styles.title}>The Book</h1>
-        <button onClick={HadleSwap}>
+        <button className={styles.btn_swap} onClick={HadleSwap}>
           {swap === "login" ? <p>Register</p> : <p>Login</p>}
         </button>
       </div>

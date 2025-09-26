@@ -1,6 +1,7 @@
+@use "../../../shared/styles/mixins.module" as mix;
+
 .input {
   // Базовые стили
-  width: 100%;
   padding: 12px 16px;
   border: 2px solid #e1e5e9;
   border-radius: 8px;
@@ -11,6 +12,7 @@
   line-height: 1.5;
   transition: all 0.3s ease;
   outline: none;
+  @include mix.main-text;
 
   // Плейсхолдер
   &::placeholder {

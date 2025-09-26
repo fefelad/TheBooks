@@ -2,7 +2,22 @@
 
 .wrapper_form {
   @include mix.flex-col;
-  width: 300px;
-  height: 400px;
+  height: 450px;
   padding: 2rem;
+
+  &__input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__label {
+    @include mix.main-text;
+  }
+  &__error {
+    @include mix.error-text;
+    display: flex;
+    justify-content: end;
+  }
 }
