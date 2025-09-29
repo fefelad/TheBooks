@@ -3,7 +3,8 @@
 @mixin flex-col {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
 }
 
 @mixin flex-center {

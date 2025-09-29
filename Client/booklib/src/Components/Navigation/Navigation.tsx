@@ -8,8 +8,11 @@ import { MdFavorite } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
 import { IoIosHelpCircle } from "react-icons/io";
 import { IoLogInOutline } from "react-icons/io5";
+import { useAuth } from "../../shared/hook/UseAuth";
 
 function Navigation() {
+  const { logout } = useAuth();
+
   return (
     <nav className={styles.navigation}>
       <ul>
@@ -52,7 +55,7 @@ function Navigation() {
         </li>
         <li className={styles.log_out}>
           <IoLogInOutline size={25} />
-          <a href="">Log out</a>
+          <button onClick={logout}>log out</button>
         </li>
 
         <hr className={styles.border_hr} />

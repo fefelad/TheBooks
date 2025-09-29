@@ -38,7 +38,17 @@ class UserController {
         },
       });
 
-      res.json(user);
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
+
+      res.json({
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          avatarUrl: user.avatarUrl,
+        },
+        token: token,
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Ошибка сервера" });
@@ -68,7 +78,15 @@ class UserController {
 
       const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
 
-      res.json({ token });
+      res.json({
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          avatarUrl: user.avatarUrl,
+        },
+        token: token,
+      });
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Ошибка сервера" });
@@ -212,6 +230,10 @@ class UserController {
       console.error(error);
       res.status(500).json({ message: "Ошибка сервера" });
     }
+  }
+
+  async test(req, res) {
+    res.send("Ok");
   }
 }
 
