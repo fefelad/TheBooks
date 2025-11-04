@@ -1,6 +1,3 @@
-// import Hero from "../Components/Layout/Hero/Hero";
-// import Layout from "../Components/Layout/Layout";
-// import Test from "../Components/Test/Test";
 import { useEffect } from "react";
 import AuthLoyout from "../features/Auth/AuthLoyout/AuthLoyout";
 import { useAuth } from "../shared/hook/UseAuth";
@@ -45,12 +42,6 @@ function App() {
             />
           </Routes>
         </BrowserRouter>
-        {/* <Layout>
-          <Hero />
-        </Layout> */}
-        {/* <AuthLoyout /> */}
-
-        {/* <Test /> */}
       </div>
     </>
   );
