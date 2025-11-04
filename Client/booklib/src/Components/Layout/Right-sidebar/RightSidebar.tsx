@@ -5,8 +5,9 @@ function RightSidebar() {
   const { user } = useAuth();
   return (
     <aside className={styles.aside_wrapper__right}>
-      <h1> Добро пожаловать, {user?.username}!</h1>
-      <p>Ваша почта {user?.email}</p>
+      <div className={styles.aside_wrapper__background}>
+        <h1 className={styles.aside_wrapper__name}> {user?.username}</h1>
+      </div>
     </aside>
   );
 }
